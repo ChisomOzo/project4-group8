@@ -3,52 +3,37 @@
 <html>
 
 
-<head>
-    <title>Movie Reccomendations</title>
-    <link rel="stylesheet" href="css/main.css"/>
+    <head>
+        <title>Movie Reccomendations</title>
+        <link rel="stylesheet" href="css/main.css"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    </head>
 
-</head>
-
-<body>
+    <body>
 
 
-    <header class="header">
-        <div class="header-bg">
-        <h1>Movie Recommendations</h1>
-    </header>
-    <div class="user-input-container">
-        <label>Enter a Movie:</label>
-        <input /> 
-        <button>Search</button>
-    </div>
-    <div class="recommendations-container">
-        <div class="movie-container">
-            <img src="https://image.tmdb.org/t/p/w500/7G9915LfUQ2lVfwMEEhDsn3kT4B.jpg" />
-            <h2>Toy Story</h2>
-            <p>Genres: Animations|Comedy</p>
-            <p>Synopsis: Led by Woody, Andy's toys live happily in his room until Andy's birthday brings Buzz Lightyear onto the scene. Afraid of losing his place in Andy's heart, Woody plots against Buzz. But when circumstances separate Buzz and Woody from their owner, the duo eventually learns to put aside their differences.</p>
+        <header class="header">
+            <div class="header-bg"></div>
+            <h1>Movie Recommendations</h1>
+        </header>
+        <div class="user-input-container">
+            <label>Enter a Movie:</label>
+            <input id="movie-input"/> 
+            <button id="search-button">Search</button>
+            <p id="search-statement">Searching movie recommendations for: </p>
         </div>
-    </div>
-
-
-
-</body>
-
-
-<script type="text/javascript" src="js/main.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <div id="recommendations-container">
+            <div class="movie-container">
+                <img src="https://image.tmdb.org/t/p/w500/7G9915LfUQ2lVfwMEEhDsn3kT4B.jpg" />
+                <h2>Toy Story</h2>
+                <p>Genres: Animations|Comedy</p>
+                <p>Synopsis: Led by Woody, Andy's toys live happily in his room until Andy's birthday brings Buzz Lightyear onto the scene. Afraid of losing his place in Andy's heart, Woody plots against Buzz. But when circumstances separate Buzz and Woody from their owner, the duo eventually learns to put aside their differences.</p>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" src="js/main.js"></script>
+    <!-- import d3 -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </html>
