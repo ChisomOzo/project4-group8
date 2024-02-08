@@ -29,7 +29,7 @@ def home():
 
 
 #Define what to do when a user hits the /about route
-@app.route("/api/v1.0/movies_list")
+@app.route("/api/v1.0/movies_list/")
 def get_population_data():
     population_collection = mongo.db.movies_list
     data = list(population_collection.find({}, {'_id': 0}))
