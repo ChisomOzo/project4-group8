@@ -1,4 +1,4 @@
-# Movie Recommandation Project
+# Movie Recommmendation  Project
 
 ## Table of Contents
 - [Project Overview](#project-overview)
@@ -41,8 +41,12 @@ Data visualizations are seamlessly integrated. These visualizations weave a comp
 ## Contributors
 - Angad Dhillon
 - Camille Velarde
-- Chandler McLaren,
+- Chandler McLaren
 - Chisom Ozoemena
+
+## References
+- [Movie Dataset]([https://flask.palletsprojects.com/](https://github.com/khanhnamle1994/movielens/tree/master))
+- [Java Script]([https://leafletjs.com/](https://getbootstrap.com/docs/3.3/javascript/))
 
 
 
