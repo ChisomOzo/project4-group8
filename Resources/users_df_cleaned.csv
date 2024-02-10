@@ -1,4 +1,4 @@
-user_id,gender,age,occupation,zipcode,age_desc,occ_desc
+userId,gender,age,occupation,zipcode,age_desc,occ_desc
 1,F,1,10,48067,Under 18,K-12 student
 2,M,56,16,70072,56+,self-employed
 3,M,25,15,55117,25-34,scientist
