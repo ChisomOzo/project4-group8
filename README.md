@@ -38,6 +38,44 @@ The frontend is built using HTML User-driven interactions are implemented using 
 ## Data Visualization
 Data visualizations are seamlessly integrated. These visualizations weave a compelling list of movies and genres to choose from.
 
+## Machine Learning Models
+K-Nearest Neighbors (KNN) Approach:
+
+Data Retrieval and Preprocessing:
+It fetches movie data from an API endpoint and preprocesses it by extracting relevant columns (movieId, title, cleaned_genres) to create a movies DataFrame.
+It extracts relevant columns (userId, movieId, rating) and drops duplicate entries to create a ratings DataFrame.
+
+Data Analysis:
+It calculates basic statistics such as the number of ratings, unique movie IDs, unique users, etc.
+It analyzes user frequency and identifies the lowest and highest rated movies.
+
+User-Item Matrix Creation:
+It creates a sparse user-item matrix using SciPy's csr_matrix function.
+
+Finding Similar Movies:
+It defines a function find_similar_movies that finds similar movies based on a given movie ID using the KNN algorithm with cosine similarity metric.
+
+Recommendation for a Specific User:
+It defines a function recommend_movies_for_user that recommends movies for a specific user based on the movies they have watched and their ratings. This function utilizes the KNN-based similarity to suggest similar movies.
+
+Custom TensorFlow Model Approach:
+
+Data Retrieval and Preprocessing:
+Similar to the KNN approach, it fetches and preprocesses movie data to create movies, ratings, and users DataFrames.
+
+Model Initialization:
+It defines a collaborative filtering model using TensorFlow, comprising embeddings for users and movies.
+
+Model Training:
+It trains the collaborative filtering model using the ratings data, using techniques like early stopping to prevent overfitting and save the best model.
+
+Model Evaluation:
+It evaluates the model's performance by calculating the minimum Root Mean Squared Error (RMSE) on the validation set.
+
+Recommendation Generation:
+It generates recommendations for a specific user by predicting ratings for unrated movies using the trained model.
+It retrieves the top-rated movies and the top recommended movies for the specified user based on predicted ratings.
+
 ## Contributors
 - Angad Dhillon
 - Camille Velarde
