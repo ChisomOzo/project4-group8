@@ -1,7 +1,8 @@
-const recommendationUrl = "http://localhost:5000/api/v1.0/movie_recommendations?user_id=";
+const recommendationUrl = "http://localhost:5000/api/v2.0/movie_recommendations?user_id=";
 
 function sendMovieRecommendationRequest() {
     console.log('hit search button')
+
     let userIdinput = "";
     //TODO: grab text from html input element and store into movieInput object
 
@@ -9,6 +10,18 @@ function sendMovieRecommendationRequest() {
     userIdinput = input.value;
     console.log(userIdinput);
     
+    // Check if user id input is within range
+    if (parseInt(userIdinput) > 671) {
+        const searchStatement = document.getElementById("search-statement");
+        searchStatement.style.display = 'block';
+        searchStatement.textContent = 'ERROR: User ID "' + userIdinput + '" not found';
+        return;
+    }
+
+
+    const loader_container = document.getElementById("loader-container");
+    loader_container.style.display = 'flex';
+
     const searchStatement = document.getElementById("search-statement");
     searchStatement.style.display = 'block';
     searchStatement.textContent = 'Searching movie recommendations for User ID: "' + userIdinput + '"';
@@ -55,6 +68,9 @@ function loaddata(response) {
 }
 
 function clearRecommendations() {
+    const loader_container = document.getElementById("loader-container");
+    loader_container.style.display = 'none';
+
     var recommendationDiv = document.getElementById('recommendations-container');
     while(recommendationDiv.firstChild) {
         recommendationDiv.removeChild(recommendationDiv.lastChild);
