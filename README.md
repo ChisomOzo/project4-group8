@@ -14,7 +14,7 @@
 
 
 ## Project Overview
-Welcome to the Movie Recommandation Project! This comprehensive project recommends movies to users based on their favourite movie that was watched by users in the past. Leveraging a Flask API to serve data to the frontend, the project's user interface is developed using the deep learning model. The dataset used had users’ rating on past movies watched, using those ratings we were able to create a model that would predict the movie that the user will watch and provide a high rating.
+Welcome to the Movie Recommendation Project! This comprehensive project recommends movies to users based on their favourite movie that was watched by users in the past. Leveraging a Flask API to serve data to the frontend, the project's user interface is developed using the deep learning model. The dataset used had users’ rating on past movies watched, using those ratings we were able to create a model that would predict the movie that the user will watch and provide a high rating.
 
 ## Project Structure
 The project is structured as follows:
