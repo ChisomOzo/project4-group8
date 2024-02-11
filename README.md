@@ -34,12 +34,15 @@ The Flask API (`app.py`) serves as the backend for the project. It handles data 
 
 ## Frontend Development
 The frontend portion of this project was built by using HTML user-driven interactions, which are implemented using a JS library and CSS.
-The html includes a text input bar where users can enter their user ID number and click search or hit enter to run the model and generate movie recommendations for that user.
-If a 
-
+The html includes a text input bar where users can enter their user ID number and click search or hit enter to run the Deep Learning model and generate movie recommendations for that user.
+If numbers outside the user range is entered or non-integer characters are entered, an error message will print.
+A load spinner from https://cssloaders.github.io/ was added to indicate that the backend model is loading.
+Once finished, the model output displays the top 10 movie recommendations for that given user.
 
 ## Data Visualization
-Data visualizations are seamlessly integrated. These visualizations weave a compelling list of movies and genres to choose from.
+Data visualizations are seamlessly integrated. These visualizations weave a compelling list of movies and genres to choose from. 
+Once a user ID is entered, the model outcome will generate a list of the top 10 movie recommendations for that given user. On the html, the list will display in 2 columns, where the movie posters, title of the movie, genres, and overview will also display. 
+For movie poster paths that did not work, a general grey image was displayed instead. 
 
 ## Machine Learning Models
 K-Nearest Neighbors (KNN) Approach:
