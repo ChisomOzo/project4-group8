@@ -33,7 +33,10 @@ The Flask API (`app.py`) serves as the backend for the project. It handles data 
 
 
 ## Frontend Development
-The frontend is built using HTML User-driven interactions are implemented using a JS library.
+The frontend portion of this project was built by using HTML user-driven interactions, which are implemented using a JS library and CSS.
+The html includes a text input bar where users can enter their user ID number and click search or hit enter to run the model and generate movie recommendations for that user.
+If a 
+
 
 ## Data Visualization
 Data visualizations are seamlessly integrated. These visualizations weave a compelling list of movies and genres to choose from.
