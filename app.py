@@ -74,14 +74,18 @@ def get_movie_recommendations():
     # Part 1: KNN Model
     movie_recommendation_ids = get_recommendations_with_knn_model(user_id)
     print('movie recommendation ids: ', movie_recommendation_ids)
+
+    movie_recommendation_ids = list(map(lambda n: int(n), movie_recommendation_ids))
+
     # Part 2: Fetch movies recommended by KNN model from mongodb
-    movie_collection = mongo.db.movies_list
-    # movie_recommendation_data = list(movie_collection.find({}, {'_id': 0}))
+    movies_details_collection = mongo.db.movies_details_list
+    movie_recommendation_data = list(movies_details_collection.find({'movieId': {'$in': movie_recommendation_ids}}, {'_id': 0}))
+    print('movie_recommendation_data: ', movie_recommendation_data)
     # print(movie_recommendation_data)
     
     # return final list of movie recommendations
-    movie_recommendations = {};
-    return (movie_recommendations)
+    movie_recommendations = {'data': movie_recommendation_data}
+    return movie_recommendations
 
 def get_recommendations_with_knn_model(user_id):
     movie_collection = mongo.db.movies_list
