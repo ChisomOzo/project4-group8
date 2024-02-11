@@ -1,4 +1,4 @@
-# Movie Recommmendation  Project
+# Movie Recommendation  Project
 
 ## Table of Contents
 - [Project Overview](#project-overview)
