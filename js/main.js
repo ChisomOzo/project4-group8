@@ -11,7 +11,7 @@ function sendMovieRecommendationRequest() {
     console.log(userIdinput);
     
     // Check if user id input is within range
-    if (parseInt(userIdinput) > 671) {
+    if (isNaN(parseInt(userIdinput)) || parseInt(userIdinput) > 671) {
         const searchStatement = document.getElementById("search-statement");
         searchStatement.style.display = 'block';
         searchStatement.textContent = 'ERROR: User ID "' + userIdinput + '" not found';
