@@ -1,4 +1,4 @@
-const recommendationUrl = "http://localhost:5000/api/v2.0/movie_recommendations?user_id=";
+const recommendationUrl = "http://localhost:5000/api/v1.0/movie_recommendations?user_id=";
 
 function sendMovieRecommendationRequest() {
     console.log('hit search button')
