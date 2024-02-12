@@ -26,7 +26,7 @@ The project utilizes data from the following sources:
 
 
 ## Data Cleanup and Analysis:
-Data cleanup and analysis are performed in visual studio code. Explore, clean, and reformat data to prepare it for analysis. 
+Data cleanup and analysis are performed in visual studio code. Explore, clean, and reformat data to prepare it for analysis. The data required the merging of different sets of data which includes users' id, movie ratings, genre and overview. The joined data then need to be cleaned
 
 ## Flask API
 The Flask API (`app.py`) serves as the backend for the project. It handles data retrieval and user-driven interactions. 
