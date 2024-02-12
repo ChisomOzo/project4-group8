@@ -35,7 +35,7 @@ The Flask API (`app.py`) serves as the backend for the project. It handles data 
 ## Frontend Development
 The frontend portion of this project was built by using HTML user-driven interactions, which are implemented using a JS library and CSS.
 The html includes a text input bar where users can enter their user ID number and click search or hit enter to run the Deep Learning model and generate movie recommendations for that user.
-If numbers outside the user range is entered or non-integer characters are entered, an error message will print.
+If numbers outside the user range are entered or non-integer characters are entered, an error message will print.
 A load spinner from https://cssloaders.github.io/ was added to indicate that the backend model is loading.
 Once finished, the model output displays the top 10 movie recommendations for that given user.
 
