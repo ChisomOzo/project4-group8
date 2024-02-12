@@ -188,7 +188,7 @@ def get_recommendations_with_deep_learning_model(user_id):
     ]
 
     # Use epochs for training
-    epochs = 60
+    epochs = 1
 
     # Fit the model with callbacks
     results = cf_model.fit(
