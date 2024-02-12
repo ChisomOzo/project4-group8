@@ -3,7 +3,6 @@
 ## Table of Contents
 - [Project Overview](#project-overview)
 - [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
 - [Data Sources](#data-sources)
 - [Data Cleanup and Analysis](#data-cleanup-and-analysis)
 - [Flask API](#flask-api)
@@ -96,12 +95,10 @@ It retrieves the top-rated movies and the top recommended movies for the specifi
 - [Mongo_DB](https://mongodb.github.io/node-mongodb-native/api-generated/mongoclient.html)
 
 ## References
-- [Movie Dataset]([https://flask.palletsprojects.com/](https://github.com/khanhnamle1994/movielens/tree/master))
-- [Java Script]([https://leafletjs.com/](https://getbootstrap.com/docs/3.3/javascript/))
 - [Data Source](https://www.kaggle.com/datasets/grouplens/movielens-20m-dataset)
 - [Reference 1](https://www.geeksforgeeks.org/recommendation-system-in-python/)
-- [Reference 2]((https://github.com/khanhnamle1994/movielens/tree/master)https://github.com/khanhnamle1994/movielens/tree/master)
-- [Reference 3]([https://www.geeksforgeeks.org/recommendation-system-in-python/](https://cssloaders.github.io/)https://cssloaders.github.io/)
+- [Reference 2](https://github.com/khanhnamle1994/movielens/tree/master)
+- [Reference 3](https://cssloaders.github.io/)
 
 
 
