@@ -93,6 +93,8 @@ It retrieves the top-rated movies and the top recommended movies for the specifi
 ## Python Libraies
 - [Tensor Flow](https://www.tensorflow.org/)
 - [Skit-Learn](https://scikit-learn.org/stable/)
+- [Pandas](https://pandas.pydata.org/)
+- [Java Script D3](https://d3js.org/)
 - [Mongo_DB](https://mongodb.github.io/node-mongodb-native/api-generated/mongoclient.html)
 
 ## References
