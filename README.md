@@ -27,7 +27,8 @@ The project utilizes data from the following sources:
 
 ## Data Cleanup and Analysis:
 Data cleanup and analysis are performed in visual studio code. Explore, clean, and reformat data to prepare it for analysis. The data required the merging of different sets of data which includes users' id, movie ratings, genre and overview. The joint data was a merge of movie_metadata.csv and rating_small.csv, this allowed us to drop any movie that had a rating but with no user id. 
-In the data process, we had to clean the genre column as it was in a list od dictory format, for example "[{'id': 16, 'name': 'Animation'}, {'id': 35, 'name': 'Comedy'}, {'id': 10751, 'name': 'Family'}]'"
+
+In the data cleaning process, we had to clean the genre column as it was in a list of dictionary format, for example "[{'id': 16, 'name': 'Animation'}, {'id': 35, 'name': 'Comedy'}, {'id': 10751, 'name': 'Family'}]'" after the cleaning the format changed to "Animation|Comedy|Family"
 
 ## Flask API
 The Flask API (`app.py`) serves as the backend for the project. It handles data retrieval and user-driven interactions. 
@@ -88,6 +89,11 @@ It retrieves the top-rated movies and the top recommended movies for the specifi
 - Camille Velarde
 - Chandler McLaren
 - Chisom Ozoemena
+
+## Python Libraies
+- [Tensor Flow](https://www.tensorflow.org/)
+- [Skit-Learn](https://scikit-learn.org/stable/)
+- [Mongo_DB](https://mongodb.github.io/node-mongodb-native/api-generated/mongoclient.html)
 
 ## References
 - [Movie Dataset]([https://flask.palletsprojects.com/](https://github.com/khanhnamle1994/movielens/tree/master))
