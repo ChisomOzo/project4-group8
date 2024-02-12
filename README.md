@@ -20,9 +20,7 @@ Welcome to the Movie Recommendation Project! This comprehensive project recommen
 The project is structured as follows:
 - `app.py`: Contains the Flask API implementation.
 - `index.html`: For HTML templates.
-
-## Data Sources
-The project utilizes data from the following sources:
+- In the file MONGO_DB we have data base connnection and in movies_clean and users_clean we have the EDA
 
 
 ## Data Cleanup and Analysis:
@@ -100,8 +98,10 @@ It retrieves the top-rated movies and the top recommended movies for the specifi
 ## References
 - [Movie Dataset]([https://flask.palletsprojects.com/](https://github.com/khanhnamle1994/movielens/tree/master))
 - [Java Script]([https://leafletjs.com/](https://getbootstrap.com/docs/3.3/javascript/))
-
-
+- [Data Source](https://www.kaggle.com/datasets/grouplens/movielens-20m-dataset)
+- [Reference 1](https://www.geeksforgeeks.org/recommendation-system-in-python/)
+- [Reference 2]((https://github.com/khanhnamle1994/movielens/tree/master)https://github.com/khanhnamle1994/movielens/tree/master)
+- [Reference 3]([https://www.geeksforgeeks.org/recommendation-system-in-python/](https://cssloaders.github.io/)https://cssloaders.github.io/)
 
 
 
