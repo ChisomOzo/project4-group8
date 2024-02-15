@@ -28,7 +28,8 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 # Create an app, being sure to pass __name__
 app = Flask(__name__)
-CORS(app)
+# Updated CORS configuration
+CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 # configure flask to connect to MongoDB
 
 app.config['MONGO_URI'] = 'mongodb://localhost:27017/movies_database'
@@ -52,203 +53,203 @@ def get_population_data():
     return (data)
 
 
-class CFModel(tf.keras.Model):
-    def __init__(self, n_users, m_items, k_factors):
-        super(CFModel, self).__init__()
+#class CFModel(tf.keras.Model):
+ #   def __init__(self, n_users, m_items, k_factors):
+ #       super(CFModel, self).__init__()
+  #      
+   #     self.P = tf.keras.Sequential([
+    #        tf.keras.layers.Embedding(n_users, k_factors, input_length=1),
+     #       tf.keras.layers.Reshape((k_factors,))
+      #  ])
         
-        self.P = tf.keras.Sequential([
-            tf.keras.layers.Embedding(n_users, k_factors, input_length=1),
-            tf.keras.layers.Reshape((k_factors,))
-        ])
+       # self.Q = tf.keras.Sequential([
+        #    tf.keras.layers.Embedding(m_items, k_factors, input_length=1),
+         #   tf.keras.layers.Reshape((k_factors,))
+        #])
         
-        self.Q = tf.keras.Sequential([
-            tf.keras.layers.Embedding(m_items, k_factors, input_length=1),
-            tf.keras.layers.Reshape((k_factors,))
-        ])
-        
-    def call(self, inputs):
-        user_id, item_id = inputs
-        user_latent = self.P(user_id)
-        item_latent = self.Q(item_id)
-        return tf.reduce_sum(tf.multiply(user_latent, item_latent), axis=1)
+    #def call(self, inputs):
+    #    user_id, item_id = inputs
+    #    user_latent = self.P(user_id)
+    #    item_latent = self.Q(item_id)
+    #    return tf.reduce_sum(tf.multiply(user_latent, item_latent), axis=1)
     
-    def rate(self, user_id, item_id):
-        user_embedding = self.P(tf.constant([user_id]))
-        item_embedding = self.Q(tf.constant([item_id]))
-        prediction = tf.reduce_sum(tf.multiply(user_embedding, item_embedding), axis=1)[0]
-        return prediction.numpy()  
+    #def rate(self, user_id, item_id):
+    #    user_embedding = self.P(tf.constant([user_id]))
+    #    item_embedding = self.Q(tf.constant([item_id]))
+    #    prediction = tf.reduce_sum(tf.multiply(user_embedding, item_embedding), axis=1)[0]
+    #    return prediction.numpy()  
 
 # Deep Learning Model -- START --
-@app.route("/api/v2.0/movie_recommendations")
-def get_movie_recommendations_v2():
-    user_id = int(request.args.get("user_id"))  # Grab user_id from API query parameter
+#@app.route("/api/v2.0/movie_recommendations")
+#def get_movie_recommendations_v2():
+#    user_id = int(request.args.get("user_id"))  # Grab user_id from API query parameter
     
     # Part 1: Deep Learning Model
-    movie_recommendation_ids = get_recommendations_with_deep_learning_model(user_id)
-    movie_recommendation_ids = list(map(lambda n: int(n), movie_recommendation_ids))
-    print('movie recommendation ids: ', movie_recommendation_ids)
+#    movie_recommendation_ids = get_recommendations_with_deep_learning_model(user_id)
+#    movie_recommendation_ids = list(map(lambda n: int(n), movie_recommendation_ids))
+#    print('movie recommendation ids: ', movie_recommendation_ids)
 
     # Part 2: Fetch movies recommended by deep learning model from mongodb
-    movies_details_collection = mongo.db.movies_details_list
-    movie_recommendation_data = list(movies_details_collection.find({'movieId': {'$in': movie_recommendation_ids}}, {'_id': 0}))
-    print('movie_recommendation_data: ', movie_recommendation_data)
+#    movies_details_collection = mongo.db.movies_details_list
+#    movie_recommendation_data = list(movies_details_collection.find({'movieId': {'$in': movie_recommendation_ids}}, {'_id': 0}))
+#    print('movie_recommendation_data: ', movie_recommendation_data)
     
     # return list of movies back to front-end
-    response = {'data': movie_recommendation_data}
-    return response
+#    response = {'data': movie_recommendation_data}
+#    return response
 
-def get_recommendations_with_deep_learning_model(user_id):
-    movie_collection = mongo.db.movies_list
-    data = list(movie_collection.find({}, {'_id': 0}))
+#def get_recommendations_with_deep_learning_model(user_id):
+#    movie_collection = mongo.db.movies_list
+#    data = list(movie_collection.find({}, {'_id': 0}))
 
-    movies_combined_df = pd.DataFrame(data)
-    n_ratings = len(movies_combined_df)
-    n_movies = len(movies_combined_df['movieId'].unique())
-    n_users = len(movies_combined_df['userId'].unique())
+#    movies_combined_df = pd.DataFrame(data)
+#    n_ratings = len(movies_combined_df)
+#    n_movies = len(movies_combined_df['movieId'].unique())
+#    n_users = len(movies_combined_df['userId'].unique())
     
-    print(f"Number of ratings: {n_ratings}")
-    print(f"Number of unique movieId's: {n_movies}")
-    print(f"Number of unique users: {n_users}")
-    print(f"Average ratings per user: {round(n_ratings/n_users, 2)}")
-    print(f"Average ratings per movie: {round(n_ratings/n_movies, 2)}")
+#    print(f"Number of ratings: {n_ratings}")
+#    print(f"Number of unique movieId's: {n_movies}")
+#    print(f"Number of unique users: {n_users}")
+#    print(f"Average ratings per user: {round(n_ratings/n_users, 2)}")
+#    print(f"Average ratings per movie: {round(n_ratings/n_movies, 2)}")
 
     # Select columns and drop duplicates
-    movies_df = movies_combined_df[['movieId', 'title', 'cleaned_genres']].copy()
-    movies_df = movies_df.drop_duplicates()
+#    movies_df = movies_combined_df[['movieId', 'title', 'cleaned_genres']].copy()
+#    movies_df = movies_df.drop_duplicates()
 
     # Check the number of ratings and unique movieId's
-    n_ratings = len(movies_df)
-    n_movies = len(movies_df['movieId'].unique())
+#    n_ratings = len(movies_df)
+#    n_movies = len(movies_df['movieId'].unique())
 
-    print(f"Number of ratings: {n_ratings}")
-    print(f"Number of unique movieId's: {n_movies}")
+#    print(f"Number of ratings: {n_ratings}")
+#    print(f"Number of unique movieId's: {n_movies}")
 
     # Select columns
-    ratings_df = movies_combined_df[['userId', 'movieId', 'rating']].copy()
+#    ratings_df = movies_combined_df[['userId', 'movieId', 'rating']].copy()
 
     # Check the number of ratings, unique movieId's, and unique users
-    n_ratings = len(ratings_df)
-    n_movies = len(ratings_df['movieId'].unique())
-    n_users = len(ratings_df['userId'].unique())
+#    n_ratings = len(ratings_df)
+#    n_movies = len(ratings_df['movieId'].unique())
+#    n_users = len(ratings_df['userId'].unique())
     
-    print(f"Number of ratings: {n_ratings}")
-    print(f"Number of unique movieId's: {n_movies}")
-    print(f"Number of unique users: {n_users}")
+#    print(f"Number of ratings: {n_ratings}")
+#    print(f"Number of unique movieId's: {n_movies}")
+#    print(f"Number of unique users: {n_users}")
 
     # Select columns and drop duplicates
-    users_df = movies_combined_df[['userId', 'gender', 'zipcode', 'age_desc', 'occ_desc']] .copy()
-    users_df = users_df.drop_duplicates()
+#    users_df = movies_combined_df[['userId', 'gender', 'zipcode', 'age_desc', 'occ_desc']] .copy()
+#    users_df = users_df.drop_duplicates()
 
     # Check the number of ratings and unique users
-    n_ratings = len(users_df)
-    n_users = len(users_df['userId'].unique())
+#    n_ratings = len(users_df)
+#    n_users = len(users_df['userId'].unique())
     
-    print(f"Number of ratings: {n_ratings}")
-    print(f"Number of unique users: {n_users}")
+#    print(f"Number of ratings: {n_ratings}")
+#    print(f"Number of unique users: {n_users}")
 
-    RNG_SEED = 142
-    random_ratings = ratings_df.sample(frac=1, random_state=RNG_SEED)
+#    RNG_SEED = 142
+#    random_ratings = ratings_df.sample(frac=1, random_state=RNG_SEED)
 
     # Randomize the dataframes
-    users = random_ratings['userId'].values
-    movies = random_ratings['movieId'].values
-    ratings = random_ratings['rating'].values
+#    users = random_ratings['userId'].values
+#    movies = random_ratings['movieId'].values
+#    ratings = random_ratings['rating'].values
 
-    print(f"users:", users, ', shape =', users.shape)
-    print(f"movies:", movies, ', shape =', movies.shape)
-    print(f"ratings:", ratings, ', shape =', ratings.shape)
+#    print(f"users:", users, ', shape =', users.shape)
+#    print(f"movies:", movies, ', shape =', movies.shape)
+#    print(f"ratings:", ratings, ', shape =', ratings.shape)
 
     # Capture the max userId and movieId
-    user_id_max = ratings_df['userId'].drop_duplicates().max()
-    movie_id_max = ratings_df['movieId'].drop_duplicates().max()
+#    user_id_max = ratings_df['userId'].drop_duplicates().max()
+#    movie_id_max = ratings_df['movieId'].drop_duplicates().max()
 
     # Ensure user_id and movie_id fall within range
-    n_users = user_id_max + 1
-    m_items = movie_id_max + 1
+#    n_users = user_id_max + 1
+#    m_items = movie_id_max + 1
     
     # Test with constant 
-    FACTORS = 100
+#    FACTORS = 100
 
     # Colabritive filtering model
-    cf_model = CFModel(n_users, m_items, FACTORS)
+#    cf_model = CFModel(n_users, m_items, FACTORS)
 
     # Compile, loss: Mean Squared Error, opimizer: Adamax
-    cf_model.compile(loss='mse', optimizer='adamax')
+#    cf_model.compile(loss='mse', optimizer='adamax')
 
     # Ensure compatibility with model
-    print("Max User ID:", user_id_max)
-    print("Max Movie ID:", movie_id_max)
-    print("Number of users (n_users):", n_users)
-    print("Number of items (m_items):", m_items)
+#    print("Max User ID:", user_id_max)
+#    print("Max Movie ID:", movie_id_max)
+#    print("Number of users (n_users):", n_users)
+#    print("Number of items (m_items):", m_items)
 
     # Train the model
     # Set callbacks to monitor validation loss and save the best model weights
-    callbacks = [
-        tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=2),
-    ]
+#    callbacks = [
+#        tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=2),
+#    ]
 
     # Use epochs for training
-    epochs = 1
+#    epochs = 1
 
     # Fit the model with callbacks
-    results = cf_model.fit(
-        x=[users, movies],
-        y=ratings,
-        epochs=epochs,
-        validation_split=.1,
-        verbose=2,
-        callbacks=callbacks
-    )
+#    results = cf_model.fit(
+#        x=[users, movies],
+#       y=ratings,
+#        epochs=epochs,
+#        validation_split=.1,
+#        verbose=2,
+#        callbacks=callbacks
+#    )
 
     # Save the entire model using the TensorFlow SavedModel format
     # tf.keras.models.save_model(cf_model, 'saved_model')
 
     # Show the best validation RMSE
-    val_losses = results.history['val_loss']
-    min_val_loss = min(val_losses)
-    idx = val_losses.index(min_val_loss) + 1  # Add 1 to get epoch number starting from 1
-    print('Minimum RMSE at epoch', idx, '=', '{:.4f}'.format(math.sqrt(min_val_loss)))
+#    val_losses = results.history['val_loss']
+#    min_val_loss = min(val_losses)
+#    idx = val_losses.index(min_val_loss) + 1  # Add 1 to get epoch number starting from 1
+#    print('Minimum RMSE at epoch', idx, '=', '{:.4f}'.format(math.sqrt(min_val_loss)))
 
     # Define predicted rating
-    def predict_rating(userId, movieId):
-        return cf_model.rate(userId - 1, movieId - 1)
+#    def predict_rating(userId, movieId):
+#        return cf_model.rate(userId - 1, movieId - 1)
 
     # Get the top rated movies by current user
-    user_ratings = ratings_df[ratings_df["userId"] == user_id][['userId', 'movieId', 'rating']]
-    user_ratings['prediction'] = user_ratings.apply(lambda x: predict_rating(user_id, x['movieId']), axis=1)
+#    user_ratings = ratings_df[ratings_df["userId"] == user_id][['userId', 'movieId', 'rating']]
+#    user_ratings['prediction'] = user_ratings.apply(lambda x: predict_rating(user_id, x['movieId']), axis=1)
 
     # Remove duplicate movie entries from movies_df DataFrame
-    unique_movies_df = movies_df.drop_duplicates(subset=['movieId'])
+#    unique_movies_df = movies_df.drop_duplicates(subset=['movieId'])
 
     # Merge the user_ratings DataFrame with the unique_movies_df DataFrame to get the top 10 movies by current user.
-    merged_data = user_ratings.merge(unique_movies_df, on='movieId', how='inner')
+#    merged_data = user_ratings.merge(unique_movies_df, on='movieId', how='inner')
 
     # Sort the DataFrame by rating in descending order and reset the index.
-    top_10_rated_movies = merged_data.sort_values(by='rating', ascending=False)
-    top_10_rated_movies = top_10_rated_movies.reset_index(drop=True)
+#    top_10_rated_movies = merged_data.sort_values(by='rating', ascending=False)
+#    top_10_rated_movies = top_10_rated_movies.reset_index(drop=True)
 
 
     # Get unrated movies for the user
-    recommendations = ratings_df[ratings_df['movieId'].isin(user_ratings['movieId'])== False][['movieId']].drop_duplicates()
+#    recommendations = ratings_df[ratings_df['movieId'].isin(user_ratings['movieId'])== False][['movieId']].drop_duplicates()
 
     # Generate predictions for unrated movies
-    recommendations['prediction'] = recommendations.apply(lambda x: predict_rating(user_id, x['movieId']), axis=1)
+#    recommendations['prediction'] = recommendations.apply(lambda x: predict_rating(user_id, x['movieId']), axis=1)
 
     # Merge predictions with movie information
-    recommended_movies = recommendations.sort_values(by='prediction', ascending=False).merge(movies_df,
-                                                                                            on='movieId',
-                                                                                            how='inner',
-                                                                                            suffixes=['_u', '_m'])
+#    recommended_movies = recommendations.sort_values(by='prediction', ascending=False).merge(movies_df,
+#                                                                                            on='movieId',
+#                                                                                            how='inner',
+#                                                                                            suffixes=['_u', '_m'])
 
     # Filter out duplicate titles for one specific user
-    recommended_movies = recommended_movies.drop_duplicates(subset=['title'])
+#    recommended_movies = recommended_movies.drop_duplicates(subset=['title'])
     # Reset index
-    top_10_recommended_movies = recommended_movies.reset_index(drop=True)
-    top_10_recommended_movieIds = list(top_10_recommended_movies['movieId'].head(10).values)
+#    top_10_recommended_movies = recommended_movies.reset_index(drop=True)
+#    top_10_recommended_movieIds = list(top_10_recommended_movies['movieId'].head(10).values)
 
-    print('top_10_recommended_movies: ', top_10_recommended_movieIds)
+#    print('top_10_recommended_movies: ', top_10_recommended_movieIds)
 
-    return top_10_recommended_movieIds
+#    return top_10_recommended_movieIds
 
 
 # Deep Learning Model -- END --
