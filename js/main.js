@@ -1,13 +1,43 @@
 const recommendationUrl = "http://localhost:5000/api/v1.0/movie_recommendations?user_id=";
 
+// function sendMovieRecommendationRequest() {
+//     console.log('hit search button')
+
+//     let userIdinput = "";
+//     //TODO: grab text from html input element and store into movieInput object
+
+//     const input = document.getElementById("userId-input")
+//     userIdinput = input.value;
+//     console.log(userIdinput);
+    
+//     // Check if user id input is within range
+//     if (isNaN(parseInt(userIdinput)) || parseInt(userIdinput) > 671) {
+//         const searchStatement = document.getElementById("search-statement");
+//         searchStatement.style.display = 'block';
+//         searchStatement.textContent = 'ERROR: User ID "' + userIdinput + '" not found';
+//         return;
+//     }
+
+
+//     const loader_container = document.getElementById("loader-container");
+//     loader_container.style.display = 'flex';
+
+//     const searchStatement = document.getElementById("search-statement");
+//     searchStatement.style.display = 'block';
+//     searchStatement.textContent = 'Searching movie recommendations for User ID: "' + userIdinput + '"';
+
+//     // Send the API request
+//     d3.json(recommendationUrl + userIdinput).then(loaddata);
+
+//     // clear input box after search
+//     input.value = "";
+
+// }
 function sendMovieRecommendationRequest() {
-    console.log('hit search button')
+    console.log('hit search button');
 
-    let userIdinput = "";
-    //TODO: grab text from html input element and store into movieInput object
-
-    const input = document.getElementById("userId-input")
-    userIdinput = input.value;
+    const input = document.getElementById("userId-input");
+    const userIdinput = input.value;
     console.log(userIdinput);
     
     // Check if user id input is within range
@@ -18,7 +48,6 @@ function sendMovieRecommendationRequest() {
         return;
     }
 
-
     const loader_container = document.getElementById("loader-container");
     loader_container.style.display = 'flex';
 
@@ -26,14 +55,30 @@ function sendMovieRecommendationRequest() {
     searchStatement.style.display = 'block';
     searchStatement.textContent = 'Searching movie recommendations for User ID: "' + userIdinput + '"';
 
-    // Send the API request
-    d3.json(recommendationUrl + userIdinput).then(loaddata);
+    // Use Fetch API to send the request
+    fetch(recommendationUrl + userIdinput, {
+        method: 'GET',
+        headers: { 'Accept': 'application/json' },
+        mode: 'cors', // Ensure CORS mode is set
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        loaddata(data); // Assuming loaddata is your function to handle and display the data
+    })
+    .catch(error => {
+        console.error('Fetch error:', error);
+        searchStatement.textContent = 'Failed to load movie recommendations. Please try again.';
+        loader_container.style.display = 'none'; // Hide loader if error occurs
+    });
 
-    // clear input box after search
+    // Clear input box after search
     input.value = "";
-
 }
-
 document.getElementById("search-button").onclick = sendMovieRecommendationRequest;
 
 var userinputElement = document.getElementById("userId-input");
